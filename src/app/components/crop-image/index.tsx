@@ -39,7 +39,7 @@ const CropImage: React.FC<CropImageTypes> = ({ image, onCancel, onCrop }) => {
                     <div className="relative flex flex-col w-[500px]">
                         <div className="w-full aspect-square">
                             <Cropper
-                                className="w-full h-[90vh]"
+                                className="w-full h-[80vh]"
                                 ref={cropperRef}
                                 id="cropper"
                                 initialAspectRatio={1}

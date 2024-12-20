@@ -48,7 +48,7 @@ const EndYearImage: React.FC<EndYearImageProps> = ({ description, fullname, imag
 
     return (
         <div className="flex justify-center items-center w-full">
-            <canvas ref={canvasRef} className="w-full"></canvas>
+            <canvas id='canvas-preview' ref={canvasRef} className="w-full"></canvas>
         </div>
     );
 };

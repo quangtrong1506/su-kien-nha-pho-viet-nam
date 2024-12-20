@@ -8,6 +8,17 @@ const HomePageIndex = () => {
     const [description, setDescription] = useState<string>('');
     const [image, setImage] = useState<File>();
     const [cropImage, setCropImage] = useState<File>();
+    const handleDownload = () => {
+        if(!name || !description || !cropImage)
+            return alert("Vui lòng đầy đủ thông tin")
+        const canvas = document.getElementById("canvas-preview") as HTMLCanvasElement;
+        if (!canvas) return 
+        const dataUrl = canvas.toDataURL("image/jpeg");
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "Thiệp_mời_"+name.replaceAll(" ","_")+".jpeg";
+        link.click();
+      };
     return (
         <>
             <div className="w-full flex sm:justify-center items-center max-sm:flex-col gap-2">
@@ -42,6 +53,11 @@ const HomePageIndex = () => {
                             setImage(file);
                         }}
                     />
+                    <button className="border p-1 w-full" onClick={()=>{
+                        handleDownload()
+                    }}>
+                        Tải xuống
+                    </button>
                 </div>
                 <div className="px-2 w-full sm:w-[500px]">
                     <EndYearImage fullname={name} description={description} image={cropImage} />
@@ -50,7 +66,6 @@ const HomePageIndex = () => {
             <CropImage
                 image={image}
                 onCrop={(img) => {
-                    console.log('img', img);
                     setCropImage(img);
                 }}
             />
